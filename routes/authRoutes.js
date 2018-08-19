@@ -6,6 +6,14 @@ module.exports = app => {
   }))
   app.get('/auth/google/callback', passport.authenticate('google'));
   app.get('/', (req, res) => {
-    res.send('Test project using heroku.sdfsdf');
+    res.send('Test project using heroku.');
   });
+
+  app.get("/api/logout", (req, res) => {
+    req.logout();
+    req.send(req.user);
+  })
+  app.get("/api/current_user", (req, res) => {
+    res.send(req.user);
+  })
 }
